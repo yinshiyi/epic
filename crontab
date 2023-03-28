@@ -1,0 +1,2 @@
+crontab -l
+12 12 * * 1 cd /Users/shiyiyin/epic/ && /opt/homebrew/bin/python3 main.py
