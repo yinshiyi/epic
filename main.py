@@ -19,6 +19,7 @@ driver = webdriver.Chrome(options=options)
 
 # Launch the browser and navigate to the webpage
 driver.get('https://www.epicpass.com/pass-results/passes.aspx')
+# https://www.epicpass.com/passes/epic-day-pass.aspx?days=2
 
 # Find and click the button
 #button = driver.find_element(By.CLASS_NAME, 'pass_configuration__day_selector__button form-control radio radio--custom')
