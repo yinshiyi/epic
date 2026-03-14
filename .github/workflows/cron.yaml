@@ -28,7 +28,9 @@ jobs:
         git config user.email "github-actions[bot]@users.noreply.github.com"
         mkdir -p logs
         mv output.log logs/output-$(date +"%Y%m%d-%H%M%S").log
-        git remote set-url origin https://x-access-token:${PAT_TOKEN}@github.com/yinshiyi/epic.git
+        # 3. Set the remote URL to use PAT
+        git remote remove origin
+        git remote add origin https://x-access-token:${PAT_TOKEN}@github.com/yinshiyi/epic.git
         git fetch origin workflow-logs
         git checkout workflow-logs
         git add logs/
