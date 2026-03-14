@@ -22,9 +22,12 @@ jobs:
       run: |
         python rate4.py > output.log 2>&1
         mkdir -p logs
+        TZ="America/Los_Angeles"
         mv output.log logs/output-$(date +"%Y%m%d-%H%M%S").log
     - name: Set timestamp
-      run: echo "TIMESTAMP=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
+      run: |
+        TZ="America/Los_Angeles"
+        echo "TIMESTAMP=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
 
     - uses: stefanzweifel/git-auto-commit-action@v5
       with:
