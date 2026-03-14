@@ -28,7 +28,8 @@ jobs:
         git config user.email "github-actions[bot]@users.noreply.github.com"
         mkdir -p logs
         mv output.log logs/output-$(date +%Y%m%d-%H%M%S).log
-        git checkout -B workflow-logs
+        git fetch origin workflow-logs
+        git checkout workflow-logs || git checkout -b workflow-logs
         git add logs/
-        git commit -m "Add workflow output log $(date +%Y-%m-%d\ %H:%M:%S)" || echo "No changes to commit"
-        git push --set-upstream origin workflow-logs
+        git commit -m "Add workflow output log $(date +%Y-%m-%d %H:%M:%S)" || echo "No changes to commit"
+        git push https://x-access-token:${PAT_TOKEN}@github.com/yinshiyi/epic.git workflow-logs
