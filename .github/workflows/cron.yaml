@@ -21,7 +21,7 @@ jobs:
         python rate4.py > output.log 2>&1
 
     - name: Upload test output
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: test-output
         path: output.log
