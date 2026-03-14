@@ -18,4 +18,10 @@ jobs:
 
     - name: Run tests
       run: |
-        python rate4.py
+        python rate4.py > output.log 2>&1
+
+    - name: Upload test output
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-output
+        path: output.log
