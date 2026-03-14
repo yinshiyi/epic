@@ -27,7 +27,6 @@ jobs:
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
         mkdir -p logs
-        mv output.log logs/output-$(date +%Y%m%d-%H%M%S).log
         mv output.log logs/output-$(date +"%Y%m%d-%H%M%S").log
         git fetch origin workflow-logs
         git checkout workflow-logs
