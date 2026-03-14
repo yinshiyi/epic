@@ -19,21 +19,9 @@ jobs:
     - name: Run tests
       run: |
         python rate4.py > output.log 2>&1
-
-    - name: Commit workflow output
-      env:
-        PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
-      run: |
-        git config user.name "github-actions[botlol]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-        mkdir -p logs
         mv output.log logs/output-$(date +"%Y%m%d-%H%M%S").log
-        # 3. Set the remote URL to use PAT
-        git remote remove origin
-        git remote add origin https://x-access-token:${PAT_TOKEN}@github.com/yinshiyi/epic.git
-        git fetch origin workflow-logs
-        git checkout workflow-logs
-        git add logs/
-        git commit -m "Add workflow output log $(date +"%Y-%m-%d %H:%M:%S")" || echo "No changes to commit"
-        # Force Git to use PAT
-        git push origin workflow-logs
+
+    - uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "Add workflow output log $(date +"%Y-%m-%d %H:%M:%S")"
+        branch: workflow-logs
