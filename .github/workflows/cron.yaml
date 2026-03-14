@@ -3,7 +3,7 @@ name: CI Build and Test
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 17 * * 1-6"   # 17:00 UTC = 9:00 PST, Monday to Friday
+    - cron: "0 15 * * 1-5"   # 17:00 UTC = 9:00 PST, Monday to Friday
 permissions:
   contents: write  # This allows the GITHUB_TOKEN to push changes
 jobs:
