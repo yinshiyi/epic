@@ -19,9 +19,12 @@ jobs:
     - name: Run tests
       run: |
         python rate4.py > output.log 2>&1
+        mkdir -p logs
         mv output.log logs/output-$(date +"%Y%m%d-%H%M%S").log
+    - name: Set timestamp
+      run: echo "TIMESTAMP=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
 
     - uses: stefanzweifel/git-auto-commit-action@v5
       with:
-        commit_message: "Add workflow output log $(date +"%Y-%m-%d %H:%M:%S")"
+        commit_message: "Add workflow output log ${{ env.TIMESTAMP }}"
         branch: workflow-logs
