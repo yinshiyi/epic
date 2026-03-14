@@ -1,7 +1,9 @@
 name: CI Build and Test
 
-on: [workflow_dispatch]
-
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 17 * * 1-6"   # 17:00 UTC = 9:00 PST, Monday to Friday
 jobs:
   build:
     runs-on: ubuntu-latest
