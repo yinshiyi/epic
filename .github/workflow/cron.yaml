@@ -1,0 +1,19 @@
+name: CI Build and Test
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        bash install_chrome.sh
+
+    - name: Run tests
+      run: |
+        python rate4.py
