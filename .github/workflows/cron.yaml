@@ -20,10 +20,6 @@ jobs:
       run: |
         python rate4.py > output.log 2>&1
 
-    - name: Run tests
-      run: |
-        python rate4.py > output.log 2>&1
-
     - name: Commit workflow output
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
