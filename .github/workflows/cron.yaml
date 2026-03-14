@@ -4,6 +4,8 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0 17 * * 1-6"   # 17:00 UTC = 9:00 PST, Monday to Friday
+permissions:
+  contents: write  # This allows the GITHUB_TOKEN to push changes
 jobs:
   build:
     runs-on: ubuntu-latest
