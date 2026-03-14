@@ -20,8 +20,18 @@ jobs:
       run: |
         python rate4.py > output.log 2>&1
 
-    - name: Upload test output
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-output
-        path: output.log
+    - name: Run tests
+      run: |
+        python rate4.py > output.log 2>&1
+
+    - name: Commit workflow output
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        mkdir -p logs
+        mv output.log logs/output-$(date +%Y%m%d-%H%M%S).log
+        git add logs/
+        git commit -m "Add workflow output log $(date +%Y-%m-%d\ %H:%M:%S)" || echo "No changes to commit"
+        git push
