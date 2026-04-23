@@ -16,8 +16,8 @@ with open("tests/data/arm5.txt") as f:
 print("Rate from arm5.txt:", arm5_rate)
 
 # compare
-if rate_value < arm5_rate:
-    print("Rates lower than target")
-else:
+if rate_value >= arm5_rate:
     print("Rates is higher or equal to target")
+else:
+    print("Rates is lower than target")
     sys.exit(1)
